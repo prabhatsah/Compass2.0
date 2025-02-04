@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* input box with icon */
+  .input-with-icon {
+    @apply relative;
+  }
+  .input-with-icon > *:first-child {
+    @apply absolute left-3 top-3 text-gray-400;
+  }
+  .input-with-icon input{
+    @apply  text-gray-700 w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-[#245C7C] bg-white ;
+  }
+
+  /* dropdown with icon */
+  .dropdown-with-icon {
+    @apply relative;
+  }
+  .dropdown-with-icon > *:first-child {
+    @apply absolute left-3 top-3 text-gray-400;
+  }
+  .dropdown-with-icon select{
+    @apply w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-[#245C7C] bg-white;
+  }
+  .dropdown-with-icon option{
+    @apply text-gray-700
+  }
+}
