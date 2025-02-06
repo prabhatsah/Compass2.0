@@ -27,4 +27,34 @@
   .dropdown-with-icon option{
     @apply text-gray-700
   }
+
+  .custom-nav{
+    @apply !text-sky-900 hover:bg-sky-900 hover:bg-opacity-5 rounded-lg p-4 block text-sm transition 
+    flex items-center gap-4 cursor-pointer;
+  }
+  
+  .custom-nav.active{
+    @apply bg-sky-900 !text-white
+  }
+}
+
+/* Remove default purple outline/border from CollapsibleTrigger */
+.custom-nav:focus,
+.custom-nav:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove Radix UI default border when clicking collapsible menu */
+[data-state="open"] {
+  border: none !important;
+  outline: none !important;
+}
+
+/* If CollapsibleTrigger has a border on hover/click, remove it */
+.CollapsibleTrigger:focus,
+.CollapsibleTrigger:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important
 }

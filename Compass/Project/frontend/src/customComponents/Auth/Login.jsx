@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "@/Global.css";
+import { LoginForm } from "@/components/login-form";
 
 // Login Modal
 const LoginModal = ({
@@ -111,7 +112,7 @@ export default function Login() {
 
   return (
     <>
-      <section class="relative mx-auto h-">
+      {/* <section class="relative mx-auto h-">
         <div className="h-[60vh] flex bg-sky-800 mx-10 rounded-2xl items-center justify-around shadow">
           <div className="flex flex-col justify-center">
             <LoginModal
@@ -126,7 +127,12 @@ export default function Login() {
             <img src={LoginImage} alt="bgImage" className="h-[50vh] " />
           </div>
         </div>
-      </section>
+      </section> */}
+      <div className="flex mt-20 w-full items-center justify-center p-6 md:p-10">
+        <div className="w-full max-w-sm">
+          <LoginForm />
+        </div>
+      </div>
     </>
   );
 }

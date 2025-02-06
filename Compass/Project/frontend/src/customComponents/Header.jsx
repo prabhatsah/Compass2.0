@@ -1,36 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { BiSolidLogInCircle } from "react-icons/bi";
-import { BiSolidLogOutCircle } from "react-icons/bi";
 import Logo from "./Meta/Logo.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/slices/userSlice";
 import toast from "react-hot-toast";
-import { FaUser } from "react-icons/fa";
-import { FaGear } from "react-icons/fa6";
+
+import { Button } from "@/components/ui/button.tsx";
+import { LogIn, LogOut } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isProfileMenuVisible, setProfileMenuVisible] = useState(false);
-  const menuRef = useRef(null);
+
+  const [position, setPosition] = React.useState("bottom");
 
   const user = useSelector((state) => state.user.user);
-
-  // Toggle select visibility
-  const toggleProfileMenu = () => setProfileMenuVisible(!isProfileMenuVisible);
-
-  // Close menu if clicked outside
-  const handleClickOutside = (e) => {
-    if (
-      e.target.id !== "user-avatar" &&
-      menuRef.current &&
-      !menuRef.current.contains(e.target)
-    ) {
-      setProfileMenuVisible(false);
-    }
-  };
 
   // Handle logout
   const handleLogout = () => {
@@ -45,10 +38,6 @@ export default function Header() {
   function handlelogin() {
     navigate("/Login");
   }
-  function openProfilePage() {
-    navigate("/profile");
-    setProfileMenuVisible(!isProfileMenuVisible);
-  }
 
   // Handle scroll event
   useEffect(() => {
@@ -61,9 +50,6 @@ export default function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // click event listener to close menu when clicked outside
-    document.addEventListener("click", handleClickOutside);
 
     return () => {
       // Clean up the event listener on component unmount
@@ -93,62 +79,79 @@ export default function Header() {
               About us
             </a>
             {user ? (
-              <a
-                href="#"
-                onClick={() => handleLogout()}
-                className="hover:opacity-90 px-5 py-2 rounded-md bg-red-900 text-white flex gap-2"
-              >
-                <BiSolidLogOutCircle className="text-2xl" />
-                Logout
-              </a>
+              // <Button
+              //   className="bg-red-900 hover:opacity-90 hover:bg-red-900"
+              //   onClick={() => handlelogin()}
+              // >
+              //   <LogOut /> Logout
+              // </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar>
+                    <AvatarImage
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      alt="@shadcn"
+                      id="user-avatar"
+                    />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>GitHub</DropdownMenuItem>
+                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  {/* <DropdownMenuItem>
+                    <Button
+                      className="bg-red-900 hover:opacity-90 hover:bg-red-900"
+                      onClick={() => handlelogin()}
+                    >
+                      <LogOut /> Logout
+                    </Button>
+                  </DropdownMenuItem> */}
+                  <DropdownMenuItem
+                    onClick={() => handleLogout()}
+                    className="text-red-900 hover:!bg-red-900 hover:!text-white"
+                  >
+                    <LogOut /> Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
-              <a
-                href="#"
+              <Button
+                className="bg-sky-900 hover:opacity-90 hover:bg-sky-900"
                 onClick={() => handlelogin()}
-                className="hover:opacity-90 px-5 py-2 rounded-md bg-sky-900 text-white flex gap-2"
               >
-                <BiSolidLogInCircle className="text-2xl" />
-                Login
-              </a>
+                <LogIn /> Login
+              </Button>
             )}
 
             {/* user profile icon */}
-            {user && (
-              <div className="avatar">
-                <div
-                  className="w-12 rounded-full cursor-pointer"
-                  onClick={toggleProfileMenu}
-                >
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                    id="user-avatar"
-                  />
-                </div>
-              </div>
-            )}
+            {/* {user && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar>
+                    <AvatarImage
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      alt="@shadcn"
+                      id="user-avatar"
+                    />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>GitHub</DropdownMenuItem>
+                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuSeparator />
 
-            {/* user profile mwnu */}
-            {isProfileMenuVisible && (
-              <div className="absolute right-10 top-16" ref={menuRef}>
-                <ul className="menu bg-white rounded-box w-30 shadow-lg border">
-                  <li
-                    className="cursor-pointer hover:opacity-75 hover:bg-gray-100"
-                    onClick={openProfilePage}
+                  <DropdownMenuItem
+                    onClick={() => handlelogin()}
+                    className="text-red-900 hover:!bg-red-900 hover:!text-white"
                   >
-                    <a>
-                      <FaUser />
-                      Profile
-                    </a>
-                  </li>
-                  <li className="cursor-pointer hover:opacity-75 hover:bg-gray-100">
-                    <a>
-                      <FaGear />
-                      Settings
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            )}
+                    <LogOut /> Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )} */}
           </div>
         </div>
       </div>

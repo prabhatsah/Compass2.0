@@ -5,13 +5,36 @@ import { FaBitbucket } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 import "./Tabs.css";
 
+import Sidebar from "@/customComponents/CommonComponents/Sidebar.jsx";
+import { Home, User, Settings } from "lucide-react";
+
 export default function Tabs({ activeTab, handleTabClick }) {
   const tabList = [
     { name: "Basic Details", icon: <FaUser className=" text-lg" /> },
     { name: "Trips", icon: <BiTrip className=" text-lg" /> },
     { name: "Destinations", icon: <FaMapLocationDot className=" text-lg" /> },
-    { name: "Bucket List", icon: <FaBitbucket className=" text-lg" /> },
+    {
+      name: "Bucket List",
+      icon: <FaBitbucket className=" text-lg" />,
+      submenu: [
+        { name: "Shimla", path: "/profile" },
+        { name: "Coorg", path: "/profile" },
+      ],
+    },
     { name: "Settings", icon: <IoSettings className=" text-lg" /> },
+  ];
+
+  const menuItems = [
+    { name: "Home", icon: <Home size={20} />, path: "/profile" },
+    {
+      name: "Profile",
+      icon: <User size={20} />,
+      submenu: [
+        { name: "View Profile", path: "/profile" },
+        { name: "Edit Profile", path: "/profile" },
+      ],
+    },
+    { name: "Settings", icon: <Settings size={20} />, path: "/settings" },
   ];
 
   return (
@@ -28,17 +51,20 @@ export default function Tabs({ activeTab, handleTabClick }) {
     //   ))}
     // </div>
 
-    <ul className="w-[90%] mx-auto ">
-      {tabList.map((tab, index) => (
-        <li
-          key={index}
-          onClick={handleTabClick}
-          className={`tab1 ${activeTab === tab.name ? "active" : ""} `}
-        >
-          <span>{tab.icon}</span>
-          <a>{tab.name}</a>
-        </li>
-      ))}
-    </ul>
+    // <ul className="w-[90%] mx-auto ">
+    //   {tabList.map((tab, index) => (
+    //     <li
+    //       key={index}
+    //       onClick={handleTabClick}
+    //       className={`tab1 ${activeTab === tab.name ? "active" : ""} `}
+    //     >
+    //       <span>{tab.icon}</span>
+    //       <a>{tab.name}</a>
+    //     </li>
+    //   ))}
+    // </ul>
+    <div className="flex">
+      <Sidebar menuItems={tabList} activeTab={activeTab} />
+    </div>
   );
 }
