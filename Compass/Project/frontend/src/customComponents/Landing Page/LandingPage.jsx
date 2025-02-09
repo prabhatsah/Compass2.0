@@ -1,23 +1,17 @@
-import LocateMap from "@/assets/Meta Assets/LocateMap.svg";
-import { useNavigate } from "react-router-dom";
-import Banner from "./Banner.jsx";
-import FeaturedLocationIndia from "./FeaturedLocationIndia.jsx";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import Testimony from "./Testimony.jsx";
+import QuotesBanner from "./QuotesBanner";
+import { Button } from "../../components/ui/button";
+import CustomButton from "../CommonComponents/CustomButton";
+import BgVideo from "../CommonComponents/BgVideo.jsx";
 
 export default function LandingPage() {
   const [searchQuery, setSearchQuery] = useState("");
-
-  const navigate = useNavigate();
-
-  function handleLoginButton() {
-    navigate("/login");
-  }
   return (
     <>
+      <BgVideo />
       <section class="relative mx-auto">
-        <div className="h-[60vh] flex bg-sky-800 mx-10 rounded-2xl items-center justify-around shadow">
+        <div className="h-[60vh] flex rounded-2xl items-center ms-20 mt-20 text-center justify-center">
           <div className="flex flex-col justify-center">
             <p className="text-2xl text-white">
               Need a&nbsp;
@@ -26,7 +20,7 @@ export default function LandingPage() {
               </strong>
               &nbsp;or want to&nbsp;
               <span className="block mt-4">
-                <strong className="text-sky-400 text-[50px]">
+                <strong className="text-white text-[50px]">
                   share your experience?
                 </strong>
               </span>
@@ -42,9 +36,10 @@ export default function LandingPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button className="bg-sky-800 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
+                {/* <button className="bg-sky-800 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300">
                   Search
-                </button>
+                </button> */}
+                <CustomButton text="Search" rounded="rounded-full" />
               </div>
             </div>
             <div className="flex gap-2 text-gray-300 justify-center items-center mt-3">
@@ -53,20 +48,9 @@ export default function LandingPage() {
               <div>60+ People</div>
             </div>
           </div>
-          <div class="">
-            <img src={LocateMap} alt="bgImage" className="h-[50vh] " />
-          </div>
         </div>
       </section>
-
-      {/* Banner */}
-      <Banner />
-
-      {/* Featured locations */}
-      <FeaturedLocationIndia />
-
-      {/* Testimony */}
-      <Testimony />
+      <QuotesBanner />
     </>
   );
 }

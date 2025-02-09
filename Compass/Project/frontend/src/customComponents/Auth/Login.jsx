@@ -21,48 +21,47 @@ const LoginModal = ({
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center justify-center w-[30vw] ">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full">
-        <h2 className="text-2xl font-bold mb-6 text-[#245C7C]">Login</h2>
-        <form action="" className="space-y-4" onSubmit={handleSubmit}>
-          <div className="input-with-icon">
-            <FaEnvelope />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-          <div className="input-with-icon">
-            <FaLock className="absolute left-3 top-3 text-gray-400" />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full !bg-sky-900 text-white py-2 rounded-lg hover:bg-opacity-90 transition duration-300"
-          >
-            Login
-          </button>
-        </form>
-        <div className="mt-4 text-center">
-          <p className="text-gray-600">
-            Don't have an account?
-            <button
-              onClick={() => {
-                navigate("/register");
-              }}
-              className="text-[#245C7C] font-semibold ml-1"
-            >
-              Register
-            </button>
-          </p>
+    <div className=" backdrop-contrast-50 rounded-lg p-8 max-w-md w-[30vw] ">
+      <h2 className="text-2xl font-bold mb-6 text-white">Login</h2>
+      <form action="" className="space-y-4" onSubmit={handleSubmit}>
+        <div className="input-with-icon">
+          <FaEnvelope />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
         </div>
+        <div className="input-with-icon">
+          <FaLock className="absolute left-3 top-3 text-gray-400" />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+        <p className="float-end text-gray-100">Forgot your password ?</p>
+        <button
+          type="submit"
+          className="w-full !bg-sky-900 text-white py-2 rounded-lg hover:bg-opacity-90 transition duration-300"
+        >
+          Login
+        </button>
+      </form>
+      <div className="mt-4 text-center">
+        <p className="text-gray-400">
+          Don't have an account?
+          <button
+            onClick={() => {
+              navigate("/register");
+            }}
+            className="text-white font-semibold ml-1 cursor-pointer"
+          >
+            Register
+          </button>
+        </p>
       </div>
     </div>
   );
@@ -112,27 +111,20 @@ export default function Login() {
 
   return (
     <>
-      {/* <section class="relative mx-auto h-">
-        <div className="h-[60vh] flex bg-sky-800 mx-10 rounded-2xl items-center justify-around shadow">
-          <div className="flex flex-col justify-center">
-            <LoginModal
-              email={email}
-              password={password}
-              setEmail={setEmail}
-              setPassword={setPassword}
-              handleSubmit={getInputData}
-            />
-          </div>
-          <div class="">
-            <img src={LoginImage} alt="bgImage" className="h-[50vh] " />
-          </div>
-        </div>
-      </section> */}
-      <div className="flex mt-20 w-full items-center justify-center p-6 md:p-10">
+      <section class=" mt-24 ml-36 w-full p-6 ">
+        <LoginModal
+          email={email}
+          password={password}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          handleSubmit={getInputData}
+        />
+      </section>
+      {/* <div className="flex mt-20 w-full items-center justify-center p-6 md:p-10">
         <div className="w-full max-w-sm">
           <LoginForm />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

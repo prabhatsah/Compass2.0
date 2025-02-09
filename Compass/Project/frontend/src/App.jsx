@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-red-800">
       <Body />
       <Toaster />
     </div>

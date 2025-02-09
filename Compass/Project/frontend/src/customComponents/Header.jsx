@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import CustomButton from "./CommonComponents/CustomButton.jsx";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,11 +59,11 @@ export default function Header() {
     };
   }, []);
   return (
-    <header className="w-full h-[8vh] sticky top-0 z-[1] mb-5">
+    <header className="w-full h-[8vh] sticky top-5 z-[1] mb-5">
       <div
-        className={`h-full border-b-[1px] border-sky-800 w-full flex items-center justify-between px-10 ${
-          isScrolled ? "bg-white" : "bg-white"
-        } mb-5`}
+        className={`h-full w-full flex items-center justify-between px-10 mb-5 
+          ${isScrolled ? "bg-transparent" : "bg-transparent"} 
+        `}
       >
         <div
           className=" flex items-center cursor-pointer"
@@ -71,7 +72,9 @@ export default function Header() {
           <Logo />
         </div>
         <div className="">
-          <div className={`flex gap-8  items-center text-gray-600`}>
+          <div
+            className={`flex gap-8  items-center text-sky-900 bg-white px-5 py-2 rounded-full bg-opacity-75 pe-3`}
+          >
             <a href="#" className=" hover:opacity-90">
               Find buddy
             </a>
@@ -79,12 +82,6 @@ export default function Header() {
               About us
             </a>
             {user ? (
-              // <Button
-              //   className="bg-red-900 hover:opacity-90 hover:bg-red-900"
-              //   onClick={() => handlelogin()}
-              // >
-              //   <LogOut /> Logout
-              // </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Avatar>
@@ -97,17 +94,9 @@ export default function Header() {
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuItem>GitHub</DropdownMenuItem>
-                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  {/* <DropdownMenuItem>
-                    <Button
-                      className="bg-red-900 hover:opacity-90 hover:bg-red-900"
-                      onClick={() => handlelogin()}
-                    >
-                      <LogOut /> Logout
-                    </Button>
-                  </DropdownMenuItem> */}
                   <DropdownMenuItem
                     onClick={() => handleLogout()}
                     className="text-red-900 hover:!bg-red-900 hover:!text-white"
@@ -117,12 +106,18 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button
-                className="bg-sky-900 hover:opacity-90 hover:bg-sky-900"
-                onClick={() => handlelogin()}
-              >
-                <LogIn /> Login
-              </Button>
+              // <Button
+              //   className="bg-sky-900 hover:opacity-90 hover:bg-sky-900 rounded-full "
+              //   onClick={() => handlelogin()}
+              // >
+              //   <LogIn /> Login
+              // </Button>
+              <CustomButton
+                text="Login"
+                rounded="rounded-full"
+                icon={<LogIn />}
+                clickHandle={() => handlelogin()}
+              />
             )}
 
             {/* user profile icon */}
