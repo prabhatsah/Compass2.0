@@ -53,8 +53,17 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
-  		}
+  			},
+
+			//my own custom colors
+			primary: "rgb(7 89 133 / var(--tw-bg-opacity, 1))",
+			bgPrimary: "#1c1c1e",
+			bgSecondary: "#2c2c2e",
+			bgTertiary: "#3c3c3e"
+  		},
+		  fontFamily: {
+			blackOps: ["Black Ops One", "cursive"],
+		  },
   	}
   },
   plugins: [require("tailwindcss-animate")],

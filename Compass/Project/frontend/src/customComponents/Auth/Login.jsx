@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "@/Global.css";
-import { LoginForm } from "@/components/login-form";
+import { LoginForm } from "@/components/login-form_old";
 
 // Login Modal
 const LoginModal = ({

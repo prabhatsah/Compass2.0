@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Auth/Login.jsx";
-import Discover from "./Discover";
-import LandingPage from "./Landing Page/LandingPage.Jsx";
-import Trip from "./Trip Details/TripComponent.jsx";
+import Discover from "./Discover.jsx";
+import LandingPage from "./LandingPage/LandingPage.Jsx";
+import Trip from "./TripDetails/TripComponent.jsx";
 import ProfileLandingPage from "./UserProfile/ProfileLandingPage.jsx";
-import Header from "./Header.jsx";
+import Header from "./MainComponents/Header.jsx";
 import Register from "./Auth/Register.jsx";
 import Footer from "./Footer.jsx";
 import mountains from "../assets/Meta Assets/mountains-002.jpg";

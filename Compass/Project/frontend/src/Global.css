@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer components {
+  /* custom layout */
+  .custom-card{
+    @apply  p-6 rounded-3xl border border-bgSecondary;
+  }
+
   /* input box with icon */
   .input-with-icon {
     @apply relative;
@@ -58,3 +63,5 @@
   box-shadow: none !important;
   border-color: transparent !important
 }
+
+

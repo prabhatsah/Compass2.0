@@ -5,7 +5,7 @@ import { FaBitbucket } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 import "./Tabs.css";
 
-import Sidebar from "@/customComponents/CommonComponents/Sidebar.jsx";
+import Sidebar from "@/CustomComponents/CommonComponents/Sidebar.jsx";
 import { Home, User, Settings } from "lucide-react";
 
 export default function Tabs({ activeTab, handleTabClick }) {
